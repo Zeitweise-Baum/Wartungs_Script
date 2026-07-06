@@ -1,8 +1,8 @@
-# Linux Wartungs- und Sicherheitsskript
+Linux Wartungs- und Sicherheitsskript
 
 Dieses Skript automatisiert grundlegende Wartungs- und Sicherheitsaufgaben auf Debian- und Ubuntu-basierten Linux-Systemen.
 
-## Funktionen
+Funktionen
 
 Das Skript führt folgende Schritte aus:
 
@@ -25,7 +25,7 @@ Das Skript führt folgende Schritte aus:
 
 ---
 
-## Unterstützte Systeme
+Unterstützte Systeme
 
 Getestet bzw. ausgelegt für:
 
@@ -41,9 +41,9 @@ Das Skript verwendet `apt` und ist daher nicht mit Fedora, CentOS, AlmaLinux, Ar
 
 ---
 
-## Installation
+Installation
 
-### Skript speichern
+Skript speichern
 
 ```bash
 sudo mkdir -p /opt/scripts
@@ -52,7 +52,7 @@ sudo nano /opt/scripts/wartung.sh
 
 Den Skriptinhalt einfügen und speichern.
 
-### Ausführbar machen
+Ausführbar machen
 
 ```bash
 sudo chmod +x /opt/scripts/wartung.sh
@@ -60,7 +60,7 @@ sudo chmod +x /opt/scripts/wartung.sh
 
 ---
 
-## Manuelle Ausführung
+Manuelle Ausführung
 
 ```bash
 sudo /opt/scripts/wartung.sh
@@ -68,9 +68,9 @@ sudo /opt/scripts/wartung.sh
 
 ---
 
-## Automatische Ausführung beim Systemstart
+Automatische Ausführung beim Systemstart
 
-### Service-Datei erstellen
+Service-Datei erstellen
 
 ```bash
 sudo nano /etc/systemd/system/wartung.service
@@ -93,7 +93,7 @@ User=root
 WantedBy=multi-user.target
 ```
 
-### Service aktivieren
+Service aktivieren
 
 ```bash
 sudo systemctl daemon-reload
@@ -102,7 +102,7 @@ sudo systemctl enable wartung.service
 
 ---
 
-## Service testen
+Service testen
 
 ```bash
 sudo systemctl start wartung.service
@@ -122,7 +122,7 @@ journalctl -u wartung.service
 
 ---
 
-## Virenscan-Protokoll
+Virenscan-Protokoll
 
 Das Virenscan-Protokoll wird unter folgendem Pfad gespeichert:
 
@@ -144,9 +144,9 @@ sudo tail -f /var/log/clamscan/scan.log
 
 ---
 
-## Hinweise
+Hinweise
 
-### Laufzeit
+Laufzeit
 
 Die Ausführungszeit hängt unter anderem ab von:
 
@@ -158,7 +158,7 @@ Die Ausführungszeit hängt unter anderem ab von:
 
 Ein vollständiger ClamAV-Scan kann mehrere Minuten bis mehrere Stunden dauern.
 
-### Firewall
+Firewall
 
 Beim ersten Start von UFW werden die Standardregeln aktiviert:
 
@@ -169,7 +169,7 @@ Falls individuelle Firewall-Regeln benötigt werden, sollten diese vor dem Produ
 
 ---
 
-## Deinstallation
+Deinstallation
 
 Systemdienst deaktivieren:
 
@@ -197,6 +197,6 @@ sudo rm /opt/scripts/wartung.sh
 
 ---
 
-## Autor
+(c)  Zetitweisebaum
 
 Eigenes Wartungs- und Sicherheitsskript für Debian- und Ubuntu-basierte Linux-Systeme.
