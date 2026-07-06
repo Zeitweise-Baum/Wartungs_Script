@@ -23,7 +23,7 @@ Das Skript führt folgende Schritte aus:
 9. Führt einen vollständigen Virenscan des Systems durch.
 10. Speichert das Scan-Ergebnis in einer Logdatei.
 
----
+
 
 Unterstützte Systeme
 
@@ -39,46 +39,39 @@ Getestet bzw. ausgelegt für:
 
 Das Skript verwendet `apt` und ist daher nicht mit Fedora, CentOS, AlmaLinux, Arch Linux oder openSUSE kompatibel.
 
----
+
 
 Installation
 
 Skript speichern
 
-```bash
 sudo mkdir -p /opt/scripts
 sudo nano /opt/scripts/wartung.sh
-```
+
 
 Den Skriptinhalt einfügen und speichern.
 
 Ausführbar machen
 
-```bash
 sudo chmod +x /opt/scripts/wartung.sh
-```
 
----
+
 
 Manuelle Ausführung
 
-```bash
 sudo /opt/scripts/wartung.sh
-```
 
----
 
 Automatische Ausführung beim Systemstart
 
 Service-Datei erstellen
 
-```bash
 sudo nano /etc/systemd/system/wartung.service
-```
+
 
 Folgenden Inhalt einfügen:
 
-```ini
+ini
 [Unit]
 Description=Linux Wartungs- und Sicherheitsskript
 After=network-online.target
@@ -91,58 +84,48 @@ User=root
 
 [Install]
 WantedBy=multi-user.target
-```
+
 
 Service aktivieren
 
-```bash
 sudo systemctl daemon-reload
 sudo systemctl enable wartung.service
-```
 
----
 
 Service testen
 
-```bash
 sudo systemctl start wartung.service
-```
+
 
 Status prüfen:
 
-```bash
 sudo systemctl status wartung.service
-```
+
 
 Log anzeigen:
 
-```bash
 journalctl -u wartung.service
-```
 
----
+
+
 
 Virenscan-Protokoll
 
 Das Virenscan-Protokoll wird unter folgendem Pfad gespeichert:
 
-```text
+
 /var/log/clamscan/scan.log
-```
+
 
 Anzeigen:
 
-```bash
 sudo cat /var/log/clamscan/scan.log
-```
+
 
 Live beobachten:
 
-```bash
 sudo tail -f /var/log/clamscan/scan.log
-```
 
----
 
 Hinweise
 
@@ -167,35 +150,29 @@ Beim ersten Start von UFW werden die Standardregeln aktiviert:
 
 Falls individuelle Firewall-Regeln benötigt werden, sollten diese vor dem Produktiveinsatz eingerichtet werden.
 
----
+
 
 Deinstallation
 
 Systemdienst deaktivieren:
 
-```bash
 sudo systemctl disable wartung.service
-```
+
 
 Service-Datei löschen:
 
-```bash
 sudo rm /etc/systemd/system/wartung.service
-```
+
 
 Neu laden:
 
-```bash
 sudo systemctl daemon-reload
-```
+
 
 Skript entfernen:
 
-```bash
 sudo rm /opt/scripts/wartung.sh
-```
 
----
 
 (c)  Zetitweisebaum
 
